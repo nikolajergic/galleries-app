@@ -12,6 +12,8 @@ export default function Register() {
       password: "",
       first_name: "",
       last_name: "",
+      password_confirmation: "",
+      terms_of_service: "",
     });
 
     async function handleSubmit(e) {
@@ -69,8 +71,10 @@ export default function Register() {
           setUserData({ ...userData, password: target.value })
           }
         />
-        <input required type="checkbox" name="terms" value={true}
-                onChange={({ target }) => setUserData({ ...userData, terms: target.checked })}/>
+        <input required type="password" placeholder="Confirm password" value={userData.password_confirmation}
+                onChange={({ target }) => setUserData({ ...userData, password_confirmation: target.value })}/>
+        <input required type="checkbox" name="terms of service" value={true}
+                onChange={({ target }) => setUserData({ ...userData, terms_of_service: target.checked })}/>
 
          <button>Register</button>
         </form>

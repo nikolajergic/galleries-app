@@ -14,7 +14,7 @@ import {
   selectActiveUser,
   selectIsAuthenticated,
 } from "./store/auth/selectors";
-
+import GuestRoute from "./components/route/GuestRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -59,12 +59,12 @@ function App() {
           </ul>
         </nav>
         <Switch>
-        <Route exact path="/login">
+        <GuestRoute exact path="/login">
             <Login />
-          </Route>
-          <Route exact path="/register">
+          </GuestRoute>
+          <GuestRoute exact path="/register">
             <Register />
-          </Route>
+          </GuestRoute>
         </Switch>
       </Router>
       
