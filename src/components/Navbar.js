@@ -18,7 +18,7 @@ export default function Navbar(){
             <nav>
                 <ul style={{listStyleType: "none", text_align: "center" }}>
                 {isAuthenticated ? (
-                    <h3 style={{backgroundColor: "purple"}}>
+                    <h3 style={{backgroundColor: "black"}}>
                         User: {activeUser && activeUser.first_name} {activeUser && activeUser.last_name}  
                     </h3>
                 ) : (
@@ -26,14 +26,9 @@ export default function Navbar(){
                         Guest
                     </h3>
                 )}
-                <li>
-                    <Link to="/galleries">All Galleries</Link>
-                </li>
+               
                 {isAuthenticated ? (
                     <>
-                        <li>
-                            <Link to="/galleries/create">Create New Gallery</Link>
-                        </li>
                         <li>
                         <Link to="/galleries/me">My Galleries</Link>
                         </li>
