@@ -42,15 +42,16 @@ function* registerHandler(action) {
   }
 }
 
-function* handleLogout(){
+
+function* logoutHandler(action) {
   try {
-      yield call(authService.logout);
-      yield put(setToken(null));
-      yield put(setActiveUser(null));
-  } catch (error) {
-      yield put(setToken(null));
-      yield put(setActiveUser(null));
-      alert("Can't logout as a guest");
+    yield call(authService.logout, action.payload);
+  } catch (e) {
+    console.log(e);
+  } finally {
+    localStorage.removeItem("token");
+    yield put(setToken(null));
+    yield put(setActiveUser(null));
   }
 }
 
@@ -73,7 +74,7 @@ export function* watchRegister() {
 }
 
 export function* watchLogout(){
-  yield takeLatest(logout.type, handleLogout);
+  yield takeLatest(logout.type, logoutHandler);
 }
 
 export function* watchGetActiveUser() {

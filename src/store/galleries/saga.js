@@ -1,7 +1,7 @@
 import { put, call, takeLatest } from "redux-saga/effects";
 import { getGalleries, getGallery, setGalleries, setGallery, createGallery, editGallery, 
-    deleteGallery, setPaginatedGalleries, createComment, deleteComment, 
-    setGalleryWithNewComment, setGalleryWithoutComment, setGalleriesWithNewGallery } from "./slice";
+    deleteGallery, setPaginatedGalleries, 
+   setGalleriesWithNewGallery } from "./slice";
 import galleryService from "../../services/GalleryService";
 
 function* handleGetGalleries(action){
@@ -55,24 +55,6 @@ function* handleDeleteGallery(action){
     }
 }
 
-function* handleCreateComment(action){
-    try {
-        console.log(action);
-        const newComment = yield call(galleryService.createComment, action.payload.content, action.payload.galleryId);
-        yield put(setGalleryWithNewComment(newComment));
-    } catch (error) {
-        alert("Comment length should not exceed 1000 characters!");
-    }
-}
-
-function* handleDeleteComment(action){
-    try {
-        const comment = yield call(galleryService.deleteComment, action.payload)
-        yield put(setGalleryWithoutComment(comment));
-    } catch (error) {
-        alert(error.message);
-    }
-}
 
 export function* watchGetGalleries(){
     yield takeLatest(getGalleries.type, handleGetGalleries);
@@ -92,12 +74,4 @@ export function* watchEditGallery(){
 
 export function* watchDeleteGallery(){
     yield takeLatest(deleteGallery.type, handleDeleteGallery);
-}
-
-export function* watchCreateComment(){
-    yield takeLatest(createComment.type, handleCreateComment);
-}
-
-export function* watchDeleteComment(){
-    yield takeLatest(deleteComment.type, handleDeleteComment);
 }

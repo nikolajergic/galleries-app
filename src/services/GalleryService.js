@@ -2,8 +2,21 @@ import HttpService from "./HttpService";
 
 class GalleryService extends HttpService{
 
-    getGalleries = async () => {
-        const {data} = await this.client.get("/galleries");
+
+      getGalleries = async (page = 0, term = "", userId ="") => {
+
+        let endpoint = `/galleries/?page=${page}`;
+
+        if (term) {
+            endpoint += `&term=${term}`;
+        }
+
+        if (userId){
+            endpoint += `&userId=${userId}`;
+        }
+
+        const {data} = await this.client.get(endpoint);
+
         return data;
     }
 
@@ -24,17 +37,6 @@ class GalleryService extends HttpService{
 
     editGallery = async (galleryId, gallery) => {
         const { data } = await this.client.put(`/galleries/${galleryId}`, gallery);
-        return data;
-    }
-
-    createComment = async (comment, galleryId) => {
-        const { data } = await this.client.post(`/galleries/${galleryId}/comments`, comment);
-        return data;
-    }
-
-    deleteComment = async (comment) => {
-        console.log(comment);
-        const { data } = await this.client.delete(`/comments/${comment}`);
         return data;
     }
 }

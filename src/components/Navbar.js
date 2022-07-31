@@ -18,7 +18,7 @@ export default function Navbar(){
             <nav>
                 <ul style={{listStyleType: "none", text_align: "center" }}>
                 {isAuthenticated ? (
-                    <h3 style={{backgroundColor: "black"}}>
+                    <h3 style={{backgroundColor: "green"}}>
                         User: {activeUser && activeUser.first_name} {activeUser && activeUser.last_name}  
                     </h3>
                 ) : (
@@ -32,7 +32,9 @@ export default function Navbar(){
                         <li>
                         <Link to="/galleries/me">My Galleries</Link>
                         </li>
-                        <button onClick={handleLogout}>Logout</button>
+                        <button onClick={handleLogout}>
+                                {activeUser?.name} logout
+                        </button>
                     </>
                 ) : (
                     <>

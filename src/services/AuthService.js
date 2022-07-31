@@ -12,8 +12,7 @@ class AuthService extends HttpService {
   }
 
   logout = async () => {
-    await this.client.post("/auth/logout");
-    localStorage.removeItem("token");
+    await this.client.post("/logout");
   };
 
   getActiveUser = async () => {

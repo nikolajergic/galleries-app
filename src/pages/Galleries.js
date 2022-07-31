@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectGalleries, selectSearchTerm } from "../store/galleries/selectors";
 import { getGalleries, setSearchUserId } from "../store/galleries/slice";
 import GalleryRow from "../components/GalleryRow";
-import Search from "../components/Search.js";
+import Search from "../components/Search";
 
 export default function Galleries({selfId} = null) {
     const dispatch = useDispatch();
@@ -42,7 +42,7 @@ export default function Galleries({selfId} = null) {
 
     return (
         <div>
-            <h3 style={{ backgroundColor: 'green', }}>
+            <h3 style={{ padding: "10px", backgroundColor: 'green'}}>
             {selfId && ("My ")} 
             {id && galleries.data.length ?
             (`${galleries?.data[0]?.user?.first_name}'s `) : 
