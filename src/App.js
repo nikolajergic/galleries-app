@@ -40,12 +40,9 @@ function App() {
       loadActiveUser();
     }
   }, []);
-
-  
-
     
     return (
-      <div>
+      <div className="App">
       <Router>
         <Navbar/>
         <Switch>
